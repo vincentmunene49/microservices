@@ -2,6 +2,7 @@ package com.microservices.orderservice.service.serviceImpl
 
 import com.microservices.orderservice.dto.OrderDto
 import com.microservices.orderservice.exception.OrderNotFoundException
+import com.microservices.orderservice.external_clients.ProductClient
 import com.microservices.orderservice.model.Order
 import com.microservices.orderservice.repository.OrderRepository
 import com.microservices.orderservice.service.OrderService
@@ -10,7 +11,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class OrderServiceImpl(
-    private val orderRepository: OrderRepository
+    private val orderRepository: OrderRepository,
+    private val productClient: ProductClient
 ) : OrderService {
     override fun createOrder(orderDto: OrderDto): OrderDto {
         val orderEntity = Order(
@@ -20,6 +22,7 @@ class OrderServiceImpl(
             date = DateTime.now().millis,
             orderStatus ="CREATED"
         )
+        productClient.reduceProductQuantity(orderEntity.productId!!, orderEntity.quantity!!)
         val savedOrder = orderRepository.save(orderEntity)
         return OrderDto(
             productId = savedOrder.productId,

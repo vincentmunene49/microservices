@@ -19,4 +19,14 @@ class ProductServiceResponseErrorHandler {
             message = productNotFoundErrorHandler.message
         )
     }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception::class)
+    fun genericErrorHandler(exception: Exception): ErrorMessage{
+        return ErrorMessage(
+            statusCode = HttpStatus.INTERNAL_SERVER_ERROR,
+            message = exception.message
+        )
+    }
 }

@@ -33,4 +33,9 @@ class ProductController(
         return ResponseEntity.noContent().build()
     }
 
+    @PutMapping("/reduceQuantity/{productId}/{quantity}")
+    fun reduceProductQuantity(@PathVariable productId: Long, @PathVariable quantity: Long): ResponseEntity<ProductDto>{
+        return ResponseEntity.ok(productService.reduceProductQuantity(productId, quantity))
+    }
+
 }

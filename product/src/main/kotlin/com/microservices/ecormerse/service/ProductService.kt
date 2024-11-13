@@ -13,4 +13,6 @@ interface ProductService {
     fun getProductById(id: Long): ProductDto
 
     fun getAllProducts(): List<ProductDto>
+
+    fun reduceProductQuantity(productId: Long, quantity: Long): ProductDto
 }

@@ -1,6 +1,7 @@
 package com.microservices.ecormerse.service.impl
 
 import com.microservices.ecormerse.dto.ProductDto
+import com.microservices.ecormerse.exception.GenericErrorHandler
 import com.microservices.ecormerse.exception.ProductNotFoundErrorHandler
 import com.microservices.ecormerse.model.Product
 import com.microservices.ecormerse.repository.ProductRepository
@@ -76,5 +77,26 @@ class ProductServiceImpl(
                 quantity = it.quantity
             )
         }
+    }
+
+    override fun reduceProductQuantity(productId: Long, quantity: Long): ProductDto {
+        val product = productRepository.findById(productId).orElseThrow {
+            throw ProductNotFoundErrorHandler("Product with id $productId not found")
+        }
+        if(quantity <= 0) {
+            throw GenericErrorHandler("Quantity should be greater than 0")
+        }
+        if (product.quantity!! < quantity) {
+            throw GenericErrorHandler("Insufficient Stock to match your request")
+        }
+
+        product.quantity = product.quantity?.minus(quantity)
+        productRepository.save(product)
+        return ProductDto(
+            productId = product.productId,
+            productName = product.productName,
+            productPrice = product.productPrice,
+            quantity = product.quantity
+        )
     }
 }
