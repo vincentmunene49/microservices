@@ -31,6 +31,9 @@ dependencies {
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 	implementation("joda-time:joda-time:2.10.14")
+	implementation("io.zipkin.reporter2:zipkin-reporter-brave")
+	implementation("io.micrometer:micrometer-tracing-bridge-brave")
+	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
