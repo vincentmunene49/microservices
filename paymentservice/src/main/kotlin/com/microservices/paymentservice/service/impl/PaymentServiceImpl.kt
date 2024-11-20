@@ -31,5 +31,17 @@ class PaymentServiceImpl(
         return savedTransaction
     }
 
+    override fun getAllTransactions(): List<TransactionDto>? {
+        val transactions = paymentRepository.findAll()
+        return transactions.map {
+            TransactionDto(
+                orderId = it.orderId,
+                paymentMode = it.paymentMode,
+                referenceNo = it.referenceNo,
+                paymentAmount = it.paymentAmount
+            )
+        }
+    }
+
 
 }

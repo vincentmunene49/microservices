@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/products")
 class ProductController(
     private val productService: ProductService
 ) {

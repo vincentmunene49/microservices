@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: apigateway
+  config:
+    import: configserver:http://localhost:9296
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: order-service
+            uri: lb://order-service
+            predicates:
+              - Path=/api/v1/**
+            filters:
+              - StripPrefix=2
+          - id: paymentservice
+            uri: lb://paymentservice
+            predicates:
+              - Path=/payment/**
+
+          - id: product-service
+            uri: lb://product-service
+            predicates:
+              - Path=/products/**
+
+server:
+  port: 9090

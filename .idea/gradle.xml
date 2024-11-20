@@ -13,11 +13,29 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/apigateway" />
+        <option name="gradleJvm" value="temurin-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/apigateway" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/eureka-server" />
         <option name="gradleJvm" value="temurin-21 (2)" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/eureka-server" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$/paymentservice" />
+        <option name="gradleJvm" value="temurin-21 (2)" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/paymentservice" />
           </set>
         </option>
       </GradleProjectSettings>
